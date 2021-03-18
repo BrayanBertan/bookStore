@@ -15,14 +15,19 @@
     <ion-item *ngFor="let autor of autores">
       <ion-label>{{autor.nome}}</ion-label>
       <ion-buttons>
-        <ion-button>
+        <ion-button [routerLink] = "['edicao',autor.id]">
           <ion-icon name='create' slot='icon-only'></ion-icon>
         </ion-button>
-        <ion-button>
+        <ion-button (click)="removeConfirm(autor)">
           <ion-icon name='trash' slot='icon-only'></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-item>
   </ion-list>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink] = "['cadastro']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
