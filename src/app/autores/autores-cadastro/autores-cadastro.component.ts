@@ -11,6 +11,7 @@ import { Sexo } from '../sexo.enum';
 })
 export class AutoresCadastroComponent implements OnInit {
   autor:Autor;
+  meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   constructor(private activateRoute:ActivatedRoute,private autorService: AutorService) {
     const id = this.activateRoute.snapshot.paramMap.get('id');
     if(id){
