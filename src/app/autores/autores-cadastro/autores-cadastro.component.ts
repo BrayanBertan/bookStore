@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Autor } from '../autor';
 import { AutorService } from '../autor.service';
@@ -12,6 +13,7 @@ import { Sexo } from '../sexo.enum';
 export class AutoresCadastroComponent implements OnInit {
   autor:Autor;
   meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  forms: FormGroup;
   constructor(private activateRoute:ActivatedRoute,private autorService: AutorService) {
     const id = this.activateRoute.snapshot.paramMap.get('id');
     if(id){
@@ -22,5 +24,9 @@ export class AutoresCadastroComponent implements OnInit {
    }
 
   ngOnInit() {}
+
+  salvar(){
+    console.log(this.autor);
+  }
 
 }
