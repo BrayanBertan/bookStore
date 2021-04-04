@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AutoresPageRoutingModule } from './autores-routing.module';
 
 import { AutoresPage } from './autores.page';
+import { AutoresCadastroComponent } from './autores-cadastro/autores-cadastro.component';
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
     IonicModule,
     AutoresPageRoutingModule,
-    ReactiveFormsModule
   ],
-  declarations: [AutoresPage]
+  declarations: [AutoresPage,AutoresCadastroComponent]
 })
 export class AutoresPageModule {}

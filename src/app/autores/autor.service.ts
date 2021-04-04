@@ -27,4 +27,27 @@ export class AutorService {
   public getAutor(id:number): Autor{
       return this.autores.find(a => a.id === id);
   }
+
+
+
+  private adicionar(autor: Autor)  {
+    autor.id = parseInt((Math.random() * 1000).toFixed(0));
+    this.autores.push(autor);
+  }
+
+  private atualizar(autor: Autor) {
+    this.autores.forEach((a, i) => {
+      if(a.id === autor.id) {
+        this.autores[i] = autor;
+      } 
+    })
+  }
+
+  salvar(autor: Autor) {
+    if(autor.id) {
+      this.atualizar(autor);
+    } else {
+      this.adicionar(autor);
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Autor } from '../autor';
 import { AutorService } from '../autor.service';
 import { Sexo } from '../sexo.enum';
@@ -11,22 +11,78 @@ import { Sexo } from '../sexo.enum';
   styleUrls: ['./autores-cadastro.component.scss'],
 })
 export class AutoresCadastroComponent implements OnInit {
-  autor:Autor;
-  meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-  forms: FormGroup;
-  constructor(private activateRoute:ActivatedRoute,private autorService: AutorService) {
-    const id = this.activateRoute.snapshot.paramMap.get('id');
-    if(id){
-        this.autor = this.autorService.getAutor(parseInt(id));
-    }else{
-      this.autor = new Autor(null,'',new Date(),Sexo.MASCULINO);
+ // autor: Autor;
+  mesesAbreviados = [
+    'Jan',
+    'Fev',
+    'Mar',
+    'Abr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Set',
+    'Out',
+    'Nov',
+    'Dez',
+  ];
+  meses = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ];
+  autorId: number;
+  autoresForm: FormGroup;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private autorService: AutorService,
+    private router: Router,
+  ) {
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    let autor;
+    if (id) {
+      autor = this.autorService.getAutor(id);
+      this.autorId = id;
+    } else {
+      autor = {
+        id: null,
+        nome: '',
+        dataNascimento: null,
+      };
     }
-   }
+
+    this.autoresForm = new FormGroup({
+      nome: new FormControl(autor.nome, [
+        Validators.required, 
+        Validators.minLength(3),
+        Validators.maxLength(150)
+      ]),
+      
+      dataNascimento: new FormControl(autor.dataNascimento),
+
+      sexo: new FormControl(autor.genero, Validators.required)
+    })
+  }
 
   ngOnInit() {}
 
-  salvar(){
-    console.log(this.autor);
+  salvar() {
+    const autor = {...this.autoresForm.value, id: this.autorId}
+    this.autorService.salvar(autor);
+    this.router.navigate(['autores']);
   }
 
+  get nome() {
+    return this.autoresForm.get('nome');
+  }
 }
