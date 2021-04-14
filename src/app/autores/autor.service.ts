@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Autor } from './autor';
 import { Sexo } from './sexo.enum';
 
@@ -8,16 +10,14 @@ import { Sexo } from './sexo.enum';
 export class AutorService {
 
   private autores: Autor[];
-  constructor() { 
-    this.autores = [
-      new Autor(1,'Nome',new Date(1980,5,20),Sexo.MASCULINO),
-      new Autor(2,'aaaa',new Date(1980,5,20),Sexo.FEMININO),
-      new Autor(3,'xd',new Date(1980,5,20),Sexo.MASCULINO),
-     ];
+  constructor(
+    private httpCliente:HttpClient
+  ) { 
+    
   }
 
-  public  getAutores():Autor[]{
-    return this.autores;
+   public  getAutores(): Observable<Autor[]>{
+    return this.httpCliente.get<Autor[]>('http://localhost:3000/autores');
   }
 
   public removeAutor(autor:Autor){

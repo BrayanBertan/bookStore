@@ -12,7 +12,9 @@ import { Sexo } from './sexo.enum';
 export class AutoresPage implements OnInit {
 autores:Autor[];
 
-  constructor(private alertController: AlertController,private autorService:AutorService) { 
+  constructor(
+    private alertController: AlertController,
+    private autorService:AutorService) { 
     this.refreshAutores();
   }
 
@@ -42,7 +44,14 @@ autores:Autor[];
     this.refreshAutores();
   }
   refreshAutores(){
-    this.autores = this.autorService.getAutores();
+     this.autorService.getAutores().subscribe(
+      (value)=>{
+        this.autores = value;
+      },
+      (error)=>{
+        console.log(error);
+      },
+    );
   }
 
 }

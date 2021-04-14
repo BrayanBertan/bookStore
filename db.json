@@ -1,0 +1,40 @@
+{
+  "autores": [
+    {
+      "nome": "Martin Fowler",
+      "dataNascimento": "1970-02-02",
+      "genero": "M",
+      "id": 1
+    },
+    {
+      "nome": "Martin Fowler",
+      "dataNascimento": "1980-02-02",
+      "genero": "M",
+      "id": 2
+    },
+    {
+      "nome": "Martin Fowler",
+      "dataNascimento": "1980-02-02",
+      "genero": "M",
+      "id": 3
+    },
+    {
+      "nome": "Martin Fowler",
+      "dataNascimento": "1980-02-02",
+      "genero": "M",
+      "id": 4
+    },
+    {
+      "nome": "Martin Fowler",
+      "dataNascimento": "1980-02-02",
+      "genero": "M",
+      "id": 5
+    },
+    {
+      "nome": "David Flanagan",
+      "dataNascimento": "1980-12-01",
+      "genero": "F",
+      "id": 6
+    }
+  ]
+}
