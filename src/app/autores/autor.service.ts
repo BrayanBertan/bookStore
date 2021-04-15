@@ -24,8 +24,8 @@ export class AutorService {
     return this.httpCliente.delete(`${this.url}/${autor.id}`);
   }
 
-  public getAutor(id:number): Autor{
-      return this.autores.find(a => a.id === id);
+  public getAutor(id:number):  Observable<Autor>{
+      return  this.httpCliente.get<Autor>(`${this.url}/${id}`);
   }
 
 
