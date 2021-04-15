@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Autor } from './autor';
 import { AutorService } from './autor.service';
 import { Sexo } from './sexo.enum';
@@ -14,6 +14,7 @@ autores:Autor[];
 
   constructor(
     private alertController: AlertController,
+    private toastController:ToastController,
     private autorService:AutorService) { 
     this.refreshAutores();
   }
@@ -40,17 +41,23 @@ autores:Autor[];
 
 
   remove(autor:Autor) {
-    this.autorService.removeAutor(autor);
-    this.refreshAutores();
+    this.autorService.removeAutor(autor).subscribe(
+      (value)=> this.refreshAutores(),
+      (error)=> {
+        this.toastController.create({
+          message: 'Não foi possivel excluir o autor',
+          duration: 5000,
+          keyboardClose: true,
+          color:'danger'
+        }).then(
+          t => t.present()
+        )}
+    );
   }
   refreshAutores(){
      this.autorService.getAutores().subscribe(
-      (value)=>{
-        this.autores = value;
-      },
-      (error)=>{
-        console.log(error);
-      },
+      (value)=> this.autores = value,
+      (error)=> console.error(error),
     );
   }
 

@@ -16,25 +16,7 @@
       "nome": "Martin Fowler",
       "dataNascimento": "1980-02-02",
       "genero": "M",
-      "id": 3
-    },
-    {
-      "nome": "Martin Fowler",
-      "dataNascimento": "1980-02-02",
-      "genero": "M",
       "id": 4
-    },
-    {
-      "nome": "Martin Fowler",
-      "dataNascimento": "1980-02-02",
-      "genero": "M",
-      "id": 5
-    },
-    {
-      "nome": "David Flanagan",
-      "dataNascimento": "1980-12-01",
-      "genero": "F",
-      "id": 6
     }
   ]
 }

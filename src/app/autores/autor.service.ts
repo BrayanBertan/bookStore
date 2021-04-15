@@ -8,7 +8,7 @@ import { Sexo } from './sexo.enum';
   providedIn: 'root'
 })
 export class AutorService {
-
+  private url = 'http://localhost:3000/autores';
   private autores: Autor[];
   constructor(
     private httpCliente:HttpClient
@@ -17,11 +17,11 @@ export class AutorService {
   }
 
    public  getAutores(): Observable<Autor[]>{
-    return this.httpCliente.get<Autor[]>('http://localhost:3000/autores');
+    return this.httpCliente.get<Autor[]>(this.url);
   }
 
   public removeAutor(autor:Autor){
-    this.autores = this.autores.filter(item => item.id !== autor.id);
+    return this.httpCliente.delete(`${this.url}/${autor.id}`);
   }
 
   public getAutor(id:number): Autor{
