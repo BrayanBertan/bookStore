@@ -10,7 +10,7 @@ export class AppComponent {
 
     { title: 'Autores', url: '/autores', icon: 'people-circle' },
     { title: 'Livros', url: '/livros', icon: 'book' },
-
+    { title: 'etetesfv', url: '/livros', icon: 'book' },
   ];
 
   constructor() {}
