@@ -15,7 +15,7 @@ autores:Autor[];
   constructor(
     private alertController: AlertController,
     private toastController:ToastController,
-    private autorService:AutorService) { 
+    private autorService:AutorService) {
     this.refreshAutores();
   }
 
@@ -59,6 +59,10 @@ autores:Autor[];
       (value)=> this.autores = value,
       (error)=> console.error(error),
     );
+  }
+
+  ionViewWillEnter(){
+    this.refreshAutores();
   }
 
 }

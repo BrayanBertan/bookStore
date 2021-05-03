@@ -7,16 +7,16 @@
       "id": 1
     },
     {
-      "nome": "Martin Fowler",
+      "nome": "Martin Fowler atualizado",
       "dataNascimento": "1980-02-02",
-      "genero": "M",
-      "id": 2
+      "sexo": "F",
+      "id": 4
     },
     {
-      "nome": "Martin Fowler",
-      "dataNascimento": "1980-02-02",
-      "genero": "M",
-      "id": 4
+      "nome": "dfdfdf b",
+      "dataNascimento": "2021-04-28T20:13:05.716-03:00",
+      "sexo": "M",
+      "id": 5
     }
   ]
 }

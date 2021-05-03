@@ -48,7 +48,7 @@ export class AutoresCadastroComponent implements OnInit {
     private autorService: AutorService,
     private router: Router,
   ) {
-    
+
     let autor={
       id:null,
       nome:'',
@@ -56,17 +56,17 @@ export class AutoresCadastroComponent implements OnInit {
       sexo:Sexo.MASCULINO
     };
     this.initializaFormulario(autor);
-   
+
   }
 
   initializaFormulario(autor:Autor){
     this.autoresForm = new FormGroup({
       nome: new FormControl(autor.nome, [
-        Validators.required, 
+        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(150)
       ]),
-      
+
       dataNascimento: new FormControl(autor.dataNascimento),
 
       sexo: new FormControl(autor.sexo, Validators.required)
@@ -75,19 +75,22 @@ export class AutoresCadastroComponent implements OnInit {
 
   ngOnInit() {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    
+
     this.autorId = id;
     this.autorService
       .getAutor(id)
-      .subscribe((autor) => {
-         this.initializaFormulario(autor);
-      });
+      .subscribe((autor) => this.initializaFormulario(autor)
+      );
   }
+
 
   salvar() {
     const autor = {...this.autoresForm.value, id: this.autorId}
-    this.autorService.salvar(autor);
-    this.router.navigate(['autores']);
+    this.autorService.salvar(autor).subscribe(
+      value => this.router.navigate(['autores']),
+      error => console.log(error)
+   );
+
   }
 
   get nome() {

@@ -12,8 +12,8 @@ export class AutorService {
   private autores: Autor[];
   constructor(
     private httpCliente:HttpClient
-  ) { 
-    
+  ) {
+
   }
 
    public  getAutores(): Observable<Autor[]>{
@@ -30,24 +30,33 @@ export class AutorService {
 
 
 
-  private adicionar(autor: Autor)  {
-    autor.id = parseInt((Math.random() * 1000).toFixed(0));
-    this.autores.push(autor);
+  // private adicionar(autor: Autor)  {
+  //   autor.id = parseInt((Math.random() * 1000).toFixed(0));
+  //   this.autores.push(autor);
+  // }
+
+  // private atualizar(autor: Autor) {
+  //   this.autores.forEach((a, i) => {
+  //     if(a.id === autor.id) {
+  //       this.autores[i] = autor;
+  //     }
+  //   })
+  // }
+
+  adicionar(autor: Autor) {
+     return this.httpCliente.post(`${this.url}`,autor);
+
   }
 
-  private atualizar(autor: Autor) {
-    this.autores.forEach((a, i) => {
-      if(a.id === autor.id) {
-        this.autores[i] = autor;
-      } 
-    })
+  atualizar(autor: Autor) {
+  return this.httpCliente.put(`${this.url}/${autor.id}`,autor);
+
   }
 
-  salvar(autor: Autor) {
-    if(autor.id) {
-      this.atualizar(autor);
-    } else {
-      this.adicionar(autor);
-    }
+  salvar(autor: Autor){
+    if(autor.id)
+      return this.atualizar(autor);
+    else
+    return this.adicionar(autor);
   }
 }
