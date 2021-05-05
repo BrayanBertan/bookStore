@@ -18,5 +18,16 @@
       "sexo": "M",
       "id": 5
     }
-  ]
+  ],
+  "livros": [
+    {
+      "id":1,
+      "titulo": "Teste",
+      "isbn":"123456",
+      "numPaginas":25,
+      "autor":"Autor",
+      "preco":5,
+      "capa":"https://images-na.ssl-images-amazon.com/images/I/510Gpt9nBhL._SX328_BO1,204,203,200_.jpg"
+    }
+]
 }
