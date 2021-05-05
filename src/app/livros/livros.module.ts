@@ -9,18 +9,20 @@ import { LivrosPageRoutingModule } from './livros-routing.module';
 import { LivrosPage } from './livros.page';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LivrosCadastroComponent } from './livros-cadastro/livros-cadastro.component';
 
 
 
 
 @NgModule({
   imports: [
-    CommonModule,  
+    FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     IonicModule,
-    HttpClientModule ,
-    LivrosPageRoutingModule
+    LivrosPageRoutingModule,
+    HttpClientModule
   ],
-  declarations: [LivrosPage]
+  declarations: [LivrosPage,LivrosCadastroComponent]
 })
 export class LivrosPageModule {}

@@ -73,6 +73,7 @@ export class AutoresCadastroComponent implements OnInit {
 
       sexo: new FormControl(autor.sexo, Validators.required)
     })
+    console.log('autores',this.autoresForm);
   }
 
   ngOnInit() {

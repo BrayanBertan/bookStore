@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Cadastro de autores</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <form [formGroup]="livrosForm">
+      <ion-item>
+          <ion-label position="floating">Nome: </ion-label>
+          <ion-input formControlName="titulo"
+                     type="text">
+          </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">ISBN: </ion-label>
+        <ion-input formControlName="isbn"
+                   type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Capa: </ion-label>
+        <ion-input formControlName="capa"
+                  type="text">
+        </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Autores</ion-label>
+      <ion-select formControlName="autor"
+                  ok-text="Ok"
+                  cancel-text="Cancelar"
+                 >
+        <ion-select-option *ngFor="let autor of autores"
+                           [value]="autor.id">
+          {{autor.nome}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Preço: </ion-label>
+      <ion-input formControlName="preco"
+                type="number">
+      </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Número de páginas: </ion-label>
+    <ion-input formControlName="numPaginas"
+              type="number">
+    </ion-input>
+  </ion-item>
+
+
+      <ion-fab vertical="bottom"
+               horizontal="end">
+          <ion-fab-button (click)="salvar()" [disabled]="!livrosForm.valid">
+              <ion-icon name="checkmark-outline"></ion-icon>
+          </ion-fab-button>
+      </ion-fab>
+  </form>
+</ion-content>
