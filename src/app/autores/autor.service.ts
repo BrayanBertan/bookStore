@@ -24,24 +24,12 @@ export class AutorService {
     return this.httpCliente.delete(`${this.url}/${autor.id}`);
   }
 
-  public getAutor(id:number):  Observable<Autor>{
+  public getAutor(id:Autor | number):  Observable<Autor>{
       return  this.httpCliente.get<Autor>(`${this.url}/${id}`);
   }
 
 
 
-  // private adicionar(autor: Autor)  {
-  //   autor.id = parseInt((Math.random() * 1000).toFixed(0));
-  //   this.autores.push(autor);
-  // }
-
-  // private atualizar(autor: Autor) {
-  //   this.autores.forEach((a, i) => {
-  //     if(a.id === autor.id) {
-  //       this.autores[i] = autor;
-  //     }
-  //   })
-  // }
 
   adicionar(autor: Autor) {
      return this.httpCliente.post(`${this.url}`,autor);

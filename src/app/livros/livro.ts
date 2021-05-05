@@ -5,7 +5,7 @@ export class Livro {
   titulo: String;
   isbn:String;
   numPaginas:number;
-  autor:Autor;
+  autor:Autor | number;
   preco:number;
   capa:String;
 

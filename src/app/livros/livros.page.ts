@@ -1,3 +1,4 @@
+import { AutorService } from './../autores/autor.service';
 import { LivroService } from './livro.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,8 @@ export class LivrosPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private toastController:ToastController,
-    private livroService:LivroService) {
+    private livroService:LivroService,
+    private autorService:AutorService) {
     this.refreshLivros();
   }
 
@@ -56,7 +58,15 @@ export class LivrosPage implements OnInit {
   }
   refreshLivros(){
      this.livroService.getLivros().subscribe(
-      (value)=> this.livros = value,
+      (value)=> {
+        this.livros = value;
+        this.livros.forEach(livro => {
+           this.autorService.getAutor(livro.autor).subscribe(
+            (value)=>livro.autor = value
+          );
+        });
+        console.log(this.livros);
+      },
       (error)=> console.error(error),
     );
     console.log(this.livros);
