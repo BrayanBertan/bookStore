@@ -40,6 +40,23 @@ export class LivrosCadastroComponent implements OnInit {
 
   }
 
+
+  get titulo() {
+    return this.livrosForm.get('titulo');
+  }
+  get isbn() {
+    return this.livrosForm.get('isbn');
+  }
+  get numPaginas() {
+    return this.livrosForm.get('numPaginas');
+  }
+  get preco() {
+    return this.livrosForm.get('preco');
+  }
+  get capa() {
+    return this.livrosForm.get('capa');
+  }
+
   initializaFormulario(livro:Livro){
     this.livrosForm = new FormGroup({
 
@@ -63,7 +80,9 @@ export class LivrosCadastroComponent implements OnInit {
 
       autor: new FormControl(livro.autor),
 
-      capa: new FormControl(livro.capa)
+      capa: new FormControl(livro.capa, [
+        Validators.required
+      ])
     })
   }
 

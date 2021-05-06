@@ -10,22 +10,43 @@
 
   <form [formGroup]="livrosForm">
       <ion-item>
-          <ion-label position="floating">Nome: </ion-label>
+          <ion-label position="floating">Titulo: </ion-label>
           <ion-input formControlName="titulo"
                      type="text">
           </ion-input>
+          <ion-text color="danger" *ngIf="titulo.errors">
+            <small *ngIf="titulo.errors.required && (titulo.dirty || titulo.touched)">
+                O campo titulo é obrigatório
+            </small>
+            <small *ngIf="titulo.errors.minlength && (titulo.dirty || titulo.touched)">
+                O campo titulo deve conter no mínimo {{titulo.errors.minlength.requiredLength}} caracteres
+            </small>
+            <small *ngIf="titulo.errors.maxlength && (titulo.dirty || titulo.touched)">
+                O campo titulo deve conter no máximo {{titulo.errors.maxlength.requiredLength}} caracteres
+            </small>
+        </ion-text>
       </ion-item>
       <ion-item>
         <ion-label position="floating">ISBN: </ion-label>
         <ion-input formControlName="isbn"
                    type="text">
         </ion-input>
+        <ion-text color="danger" *ngIf="isbn.errors">
+          <small *ngIf="isbn.errors.required && (isbn.dirty || isbn.touched)">
+              O campo isbn é obrigatório
+          </small>
+      </ion-text>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Capa: </ion-label>
         <ion-input formControlName="capa"
                   type="text">
         </ion-input>
+        <ion-text color="danger" *ngIf="capa.errors">
+          <small *ngIf="capa.errors.required && (capa.dirty || capa.touched)">
+              O campo capa é obrigatório
+          </small>
+      </ion-text>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Autores</ion-label>
@@ -44,12 +65,22 @@
       <ion-input formControlName="preco"
                 type="number">
       </ion-input>
+      <ion-text color="danger" *ngIf="preco.errors">
+        <small *ngIf="preco.errors.required && (preco.dirty || preco.touched)">
+            O campo preço é obrigatório
+        </small>
+    </ion-text>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Número de páginas: </ion-label>
     <ion-input formControlName="numPaginas"
               type="number">
     </ion-input>
+    <ion-text color="danger" *ngIf="numPaginas.errors">
+      <small *ngIf="numPaginas.errors.required && (numPaginas.dirty || numPaginas.touched)">
+          O campo número de paginas é obrigatório
+      </small>
+  </ion-text>
   </ion-item>
 
 
